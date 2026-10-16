@@ -1,0 +1,65 @@
+[package]
+name = "astra"
+version = "0.1.0"
+description = "Astra — a local-first, permission-controlled desktop AI assistant"
+edition = "2021"
+license = "MIT"
+
+[lib]
+name = "astra_lib"
+# Desktop targets only: cdylib/staticlib are for mobile and trip lld's
+# PE export limit on windows-gnu (auto-export of every symbol).
+crate-type = ["rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2.12", features = ["tray-icon", "image-png"] }
+tauri-plugin-global-shortcut = "2"
+tauri-plugin-notification = "2"
+tauri-plugin-dialog = "2"
+tauri-plugin-clipboard-manager = "2"
+tauri-plugin-opener = "2"
+tauri-plugin-autostart = "2"
+tauri-plugin-process = "2"
+
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+tokio = { version = "1", features = ["full"] }
+futures-util = "0.3"
+reqwest = { version = "0.12", default-features = false, features = ["json", "multipart", "stream", "rustls-tls", "charset"] }
+tokio-tungstenite = { version = "0.26", features = ["rustls-tls-webpki-roots"] }
+rusqlite = { version = "0.40", features = ["bundled"] }
+keyring = "4"
+anyhow = "1"
+thiserror = "2"
+chrono = { version = "0.4", features = ["serde"] }
+uuid = { version = "1", features = ["v4", "serde"] }
+dirs = "6"
+base64 = "0.22"
+sha2 = "0.11"
+hex = "0.4"
+open = "5"
+log = "0.4"
+xcap = "0.9"
+image = "0.25"
+sysinfo = "0.37"
+winreg = "0.55"
+html2text = "0.17"
+windows = { version = "0.62", features = [
+  "Win32_Foundation",
+  "Win32_Media_Audio",
+  "Win32_Media_Audio_Endpoints",
+  "Win32_System_Com",
+  "Win32_UI_WindowsAndMessaging",
+] }
+
+[profile.dev]
+debug = 1
+
+[profile.release]
+opt-level = "s"
+lto = "thin"
+strip = true
+codegen-units = 1

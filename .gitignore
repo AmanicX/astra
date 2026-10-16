@@ -1,0 +1,14 @@
+node_modules/
+dist/
+target/
+*.log
+.env
+.env.*
+!.env.example
+.impeccable/
+.taste-skill/
+*.local
+.DS_Store
+Thumbs.db
+release/
+src-tauri/.linker/
