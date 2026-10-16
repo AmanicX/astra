@@ -185,7 +185,7 @@ pub async fn probe(cfg: &AiSettings) -> ProviderProbe {
         return ProviderProbe {
             ok: false,
             models: vec![],
-            message: "No API key stored for this provider yet. Add one in Settings â†’ AI.".into(),
+            message: "No API key stored for this provider yet. Add one in Settings \u{2192} AI.".into(),
         };
     }
     let url = format!("{}/models", cfg.base_url.trim().trim_end_matches('/'));
@@ -232,10 +232,11 @@ pub async fn probe(cfg: &AiSettings) -> ProviderProbe {
 }
 
 fn truncate(s: &str, n: usize) -> String {
-    if s.len() <= n {
+    if s.chars().count() <= n {
         s.to_string()
     } else {
-        format!("{}â€¦", &s[..n])
+        let cut: String = s.chars().take(n).collect();
+        format!("{cut}\u{2026}")
     }
 }
 

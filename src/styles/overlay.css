@@ -1,0 +1,29 @@
+@import "./tokens.css";
+@import "./base.css";
+
+.overlay {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(180deg, var(--ground-1), var(--ground-0));
+  border: 1px solid var(--seam-strong);
+}
+.overlay-drag { height: 34px; display: flex; align-items: center; justify-content: space-between; padding: 0 var(--sp-2); border-bottom: 1px solid var(--line); app-region: drag; }
+.overlay-brand { display: flex; align-items: center; gap: var(--sp-1); color: var(--ink-2); font-size: var(--fs-1); }
+.overlay-actions { display: flex; gap: var(--sp-1); app-region: no-drag; }
+.overlay-close { width: 26px; height: 26px; display: inline-flex; align-items: center; justify-content: center; color: var(--ink-2); border-radius: var(--r-1); }
+.overlay-close:hover { background: var(--ground-2); color: var(--ink-0); }
+.overlay-main { flex: 1; display: flex; flex-direction: column; padding: var(--sp-2); gap: var(--sp-2); }
+.overlay-row { display: flex; align-items: center; gap: var(--sp-1); }
+.overlay-input { flex: 1; height: 34px; padding: 0 var(--sp-2); border: 1px solid var(--line); border-radius: var(--r-2); background: var(--ground-1); color: var(--ink-0); transition: border-color var(--dur-1) var(--ease-out); }
+.overlay-input:focus { border-color: var(--seam-strong); }
+.overlay-status { color: var(--ink-3); font-size: var(--fs-1); }
+.overlay-mic { display: flex; align-items: center; justify-content: center; gap: var(--sp-1); height: 34px; padding: 0 var(--sp-2); border: 1px solid var(--line); border-radius: var(--r-2); background: var(--ground-2); color: var(--ink-0); }
+.overlay-mic:hover:not(:disabled) { background: var(--ground-3); }
+.overlay-mic:disabled { opacity: 0.4; cursor: not-allowed; }
+.overlay-mic-live { color: var(--vermilion-ink); border-color: var(--vermilion); }
+.overlay-results { flex: 1; display: flex; flex-direction: column; gap: var(--sp-1); border: 1px solid var(--line); border-radius: var(--r-2); padding: var(--sp-2); overflow: auto; background: var(--ground-0); }
+.overlay-line { font-size: var(--fs-1); color: var(--ink-1); white-space: pre-wrap; }
+.overlay-line-user { color: var(--ink-2); }
+.overlay-line-assistant { color: var(--ink-0); }
+.overlay-line-system { color: var(--ink-3); }

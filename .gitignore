@@ -12,3 +12,4 @@ target/
 Thumbs.db
 release/
 src-tauri/.linker/
+*.tsbuildinfo

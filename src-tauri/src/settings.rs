@@ -195,7 +195,7 @@ impl Default for AiSettings {
         AiSettings {
             provider: "groq".into(),
             base_url: "https://api.groq.com/openai/v1".into(),
-            chat_model: "llama-3.3-70b-versatile".into(),
+            chat_model: "openai/gpt-oss-20b".into(),
             vision_model: "meta-llama/llama-4-scout-17b-16e-instruct".into(),
             temperature: 0.6,
             max_tokens: 4096,

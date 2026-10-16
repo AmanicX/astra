@@ -1,0 +1,159 @@
+/* Astra — design tokens.
+   Direction: letterpress composing room.
+   Ink-black warm ground, ivory type, a single vermilion accent.
+   Seams over shadows: depth comes from hairline rules, not glow. */
+
+:root {
+  color-scheme: dark;
+
+  /* Ground — warm ink blacks, ordered darkest to lightest. */
+  --ground-0: #12100e;
+  --ground-1: #17140f;
+  --ground-2: #1e1a14;
+  --ground-3: #262019;
+  --ground-4: #302a21;
+  --ground-inset: #0c0b09;
+
+  /* Ink — ivory to ash. Every step is a contrast-safe text color:
+     ink-2 ~6.9:1, ink-3 ~4.8:1 against --ground-1 (WCAG AA for small text). */
+  --ink-0: #f2ede3;
+  --ink-1: #cec7b8;
+  --ink-2: #a79e8d;
+  --ink-3: #8a8172;
+  --ink-4: #4b453b;
+
+  /* Seams — hairlines that hold the page together. */
+  --seam: rgba(242, 237, 227, 0.1);
+  --seam-strong: rgba(242, 237, 227, 0.16);
+  --seam-soft: rgba(242, 237, 227, 0.055);
+
+  /* Accents. */
+  --vermilion: #d9482b;
+  --vermilion-ink: #f26a4c;
+  --vermilion-dim: rgba(217, 72, 43, 0.16);
+  /* Filled accent surface: darkened so white text clears 4.5:1 on it. */
+  --accent-fill: #b63a1e;
+  --accent-fill-hover: #a5341a;
+  --green: #3f6b52;
+  --green-ink: #6fa98a;
+  --green-dim: rgba(63, 107, 82, 0.2);
+  --amber: #c98a2e;
+  --amber-ink: #e0a94f;
+  --amber-dim: rgba(201, 138, 46, 0.18);
+  --red: #c0442e;
+  --red-ink: #e2705a;
+  --red-dim: rgba(192, 68, 46, 0.18);
+
+  /* Semantic. */
+  --bg: var(--ground-0);
+  --panel: var(--ground-1);
+  --raised: var(--ground-2);
+  --line: var(--seam);
+  --text: var(--ink-0);
+  --text-dim: var(--ink-2);
+  --accent: var(--vermilion);
+  --accent-ink: var(--vermilion-ink);
+
+  /* Risk tiers. */
+  --risk-low: var(--green-ink);
+  --risk-moderate: var(--amber-ink);
+  --risk-high: var(--red-ink);
+
+  /* Type. */
+  --font-ui: "Schibsted Grotesk Variable", "Schibsted Grotesk", system-ui,
+    -apple-system, "Segoe UI", sans-serif;
+  --font-prose: "Literata", Georgia, "Times New Roman", serif;
+  --font-mono: "Cascadia Code", "JetBrains Mono", ui-monospace, Consolas, monospace;
+
+  --fs-0: 11px;
+  --fs-1: 12px;
+  --fs-2: 13px;
+  --fs-3: 14px;
+  --fs-4: 16px;
+  --fs-5: 19px;
+  --fs-6: 24px;
+  --fs-7: 32px;
+
+  --lh-tight: 1.2;
+  --lh-ui: 1.45;
+  --lh-prose: 1.68;
+
+  --track-tight: -0.011em;
+  --track-wide: 0.08em;
+  --track-caps: 0.14em;
+
+  /* Space — 4px grid. */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 24px;
+  --sp-6: 32px;
+  --sp-7: 48px;
+  --sp-8: 64px;
+
+  /* Radius — restrained. */
+  --r-1: 4px;
+  --r-2: 7px;
+  --r-3: 10px;
+  --r-4: 14px;
+  --r-full: 999px;
+
+  /* Shadows — used sparingly; floating layers only. */
+  --shadow-pop: 0 18px 44px -20px rgba(0, 0, 0, 0.85),
+    0 2px 0 0 rgba(0, 0, 0, 0.4);
+  --shadow-modal: 0 30px 80px -28px rgba(0, 0, 0, 0.9);
+
+  /* Motion. */
+  --dur-1: 110ms;
+  --dur-2: 170ms;
+  --dur-3: 260ms;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+  --titlebar-h: 44px;
+
+  --font-scale: 1;
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+  --ground-0: #f4f0e7;
+  --ground-1: #ece7db;
+  --ground-2: #e2dccd;
+  --ground-3: #d8d1c0;
+  --ground-4: #cbc3b0;
+  --ground-inset: #fbf8f1;
+  --ink-0: #1c1813;
+  --ink-1: #3c352b;
+  --ink-2: #6a6154;
+  --ink-3: #6f6656;
+  --ink-4: #a89f8e;
+  --seam: rgba(28, 24, 19, 0.14);
+  --seam-strong: rgba(28, 24, 19, 0.24);
+  --seam-soft: rgba(28, 24, 19, 0.07);
+  --shadow-pop: 0 18px 40px -22px rgba(28, 24, 19, 0.45);
+  --shadow-modal: 0 30px 70px -30px rgba(28, 24, 19, 0.5);
+}
+
+:root[data-accent="green"] {
+  --accent: var(--green-ink);
+  --accent-ink: var(--green-ink);
+}
+:root[data-accent="amber"] {
+  --accent: var(--amber-ink);
+  --accent-ink: var(--amber-ink);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-1: 0ms;
+    --dur-2: 0ms;
+    --dur-3: 0ms;
+  }
+}
+:root[data-motion="reduced"] {
+  --dur-1: 0ms;
+  --dur-2: 0ms;
+  --dur-3: 0ms;
+}

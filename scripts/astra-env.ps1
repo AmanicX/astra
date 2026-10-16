@@ -32,5 +32,12 @@ if (Test-Path $Unwind) {
   }
 }
 
-& $Command[0] $Command[1..($Command.Length)]
+# Invoke the wrapped command. Slice carefully: a single-argument command
+# (e.g. `astra-env.ps1 npm`) has no `[1..1]` tail to index into.
+$exe = $Command[0]
+if ($Command.Length -gt 1) {
+  & $exe $Command[1..($Command.Length - 1)]
+} else {
+  & $exe
+}
 exit $LASTEXITCODE
