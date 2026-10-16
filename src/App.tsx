@@ -39,17 +39,14 @@ export default function App() {
   const showRail = activity.length > 0 && view === "chat";
 
   return (
-    <div className="app">
+    <div className="app" data-rail={showRail ? "on" : "off"}>
       <TitleBar />
       <Sidebar />
 
       <main className="main">
         {!ready ? (
-          <div className="welcome" style={{ marginTop: 120 }}>
-            <div className="welcome-mark">
-              <span className="welcome-glyph">A</span>
-              <span className="welcome-rule" />
-            </div>
+          <div className="welcome">
+            <span className="welcome-mark" aria-hidden="true" />
             <h1 className="welcome-title">Astra</h1>
             <p className="welcome-lede">Waking the composing room.</p>
           </div>

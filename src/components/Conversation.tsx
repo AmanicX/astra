@@ -30,10 +30,7 @@ export function Conversation() {
       <div className="thread scroll">
         {empty ? (
           <div className="welcome">
-            <div className="welcome-mark">
-              <span className="welcome-glyph">A</span>
-              <span className="welcome-rule" />
-            </div>
+            <span className="welcome-mark" aria-hidden="true" />
             <h1 className="welcome-title">{settings?.assistant.name ?? "Astra"}</h1>
             <p className="welcome-lede">
               A local-first assistant that can actually <em>do</em> things on this computer — under
