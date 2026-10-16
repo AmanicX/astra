@@ -145,14 +145,6 @@ export function Sidebar() {
           <span>Activity</span>
         </button>
         <button
-          className={cn("nav-item", view === "diagnostics" && "nav-active")}
-          type="button"
-          onClick={() => setView("diagnostics")}
-        >
-          <IconPulse size={16} />
-          <span>Diagnostics</span>
-        </button>
-        <button
           className={cn("nav-item", view === "settings" && "nav-active")}
           type="button"
           onClick={() => setView("settings")}

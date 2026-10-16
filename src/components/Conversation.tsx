@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import { useStore } from "../lib/store";
+import { cn } from "../lib/format";
 import { Message } from "./Message";
 import { Composer } from "./Composer";
 
@@ -26,7 +27,7 @@ export function Conversation() {
   const empty = messages.length === 0;
 
   return (
-    <div className="conversation">
+    <div className={cn("conversation", empty && "conversation-empty")}>
       <div className="thread scroll">
         {empty ? (
           <div className="welcome">

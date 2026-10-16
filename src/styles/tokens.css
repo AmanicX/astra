@@ -104,12 +104,26 @@
     0 2px 0 0 rgba(0, 0, 0, 0.4);
   --shadow-modal: 0 30px 80px -28px rgba(0, 0, 0, 0.9);
 
-  /* Motion. */
+  /* Motion. Four durations, three curves — decide by purpose, not by element.
+     dur-1 instant feedback (hover/press) · dur-2 small components ·
+     dur-3 panels/dialogs · dur-4 view & section moves.
+     Ease-out for entering, ease-in for leaving, ease-out for tactile knobs. */
   --dur-1: 110ms;
   --dur-2: 170ms;
   --dur-3: 260ms;
+  --dur-4: 360ms;
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
   --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* Focus ring — a restrained accent, never a hard orange box.
+     Solid enough to clear 3:1 against adjacent surfaces for keyboard users. */
+  --ring: rgba(217, 72, 43, 0.55);
+  --ring-soft: rgba(217, 72, 43, 0.22);
+
+  /* Content column — one measure shared by thread, welcome and composer. */
+  --col: 760px;
+  --col-inner: calc(var(--col) - var(--sp-4) * 2);
 
   --titlebar-h: 44px;
 
@@ -150,10 +164,12 @@
     --dur-1: 0ms;
     --dur-2: 0ms;
     --dur-3: 0ms;
+    --dur-4: 0ms;
   }
 }
 :root[data-motion="reduced"] {
   --dur-1: 0ms;
   --dur-2: 0ms;
   --dur-3: 0ms;
+  --dur-4: 0ms;
 }

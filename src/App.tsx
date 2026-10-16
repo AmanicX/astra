@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import { listen } from "@tauri-apps/api/event";
 import { useStore } from "./lib/store";
+import { applyAppearance } from "./lib/appearance";
 import { TitleBar } from "./components/TitleBar";
 import { Sidebar } from "./components/Sidebar";
 import { Conversation } from "./components/Conversation";
@@ -38,6 +39,18 @@ export default function App() {
 
   const showRail = activity.length > 0 && view === "chat";
 
+  const appearance = useStore((s) => s.settings?.appearance);
+
+  useEffect(() => {
+    if (!appearance) return;
+    applyAppearance(appearance);
+    const mq = window.matchMedia("(prefers-color-scheme: light)");
+    if (appearance.theme !== "system") return;
+    const sync = () => applyAppearance(appearance);
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, [appearance]);
+
   return (
     <div className="app" data-rail={showRail ? "on" : "off"}>
       <TitleBar />
@@ -50,8 +63,8 @@ export default function App() {
             <h1 className="welcome-title">Astra</h1>
             <p className="welcome-lede">Waking the composing room.</p>
           </div>
-        ) : view === "settings" || view === "diagnostics" ? (
-          <Settings initialTab={view === "diagnostics" ? "diagnostics" : "overview"} />
+        ) : view === "settings" ? (
+          <Settings initialSection="appearance" />
         ) : view === "activity" ? (
           <ActivityPage />
         ) : (

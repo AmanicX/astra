@@ -23,7 +23,8 @@
         "shadow": true,
         "resizable": true,
         "fullscreen": false,
-        "focus": true
+        "focus": true,
+        "backgroundColor": "#12100E"
       },
       {
         "label": "overlay",

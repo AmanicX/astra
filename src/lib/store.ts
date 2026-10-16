@@ -13,7 +13,7 @@ import type {
   UIMessage,
 } from "./types";
 
-export type View = "chat" | "settings" | "activity" | "diagnostics";
+export type View = "chat" | "settings" | "activity";
 
 interface AstraState {
   ready: boolean;
