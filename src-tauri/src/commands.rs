@@ -437,8 +437,21 @@ pub fn agent_history(state: State<'_, AppState>) -> Result<Vec<Value>> {
 // ---------------- voice ----------------
 
 #[tauri::command]
-pub fn tts_voices() -> Vec<crate::voice::VoiceInfo> {
-    crate::voice::curated_voices()
+pub fn tts_voices(state: State<'_, AppState>) -> Vec<crate::voice::VoiceInfo> {
+    let mut voices = crate::voice::curated_voices();
+    let settings = state.get_settings();
+    if settings.speech.custom_voice_enabled && settings.speech.custom_voice_path.is_some() {
+        voices.insert(
+            0,
+            crate::voice::VoiceInfo {
+                short_name: "custom".into(),
+                locale: "local".into(),
+                gender: "custom".into(),
+                friendly: format!("Custom — {}", settings.speech.custom_voice_name),
+            },
+        );
+    }
+    voices
 }
 
 #[derive(Serialize)]
