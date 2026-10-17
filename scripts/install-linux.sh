@@ -61,7 +61,8 @@ install_system_deps() {
     rpm)
       info "Installing build dependencies via dnf (needs sudo)..."
       $SUDO dnf install -y \
-        gcc gcc-c++ make curl wget file pkgconf-pkg-config openssl-devel \
+        gcc gcc-c++ make clang glibc-devel \
+        curl wget file pkgconf-pkg-config openssl-devel \
         webkit2gtk4.1-devel gtk3-devel libappindicator-gtk3-devel \
         librsvg2-devel patchelf fuse fuse-libs desktop-file-utils \
         pipewire-devel dbus-devel libxcb-devel libXrandr-devel mesa-libgbm-devel

@@ -74,6 +74,14 @@ cd astra
 ./scripts/install-linux.sh
 ```
 
+On Arch-based distributions (Arch, CachyOS, Manjaro, ...) use the dedicated
+installer, which installs system-wide under `/opt/astra`:
+
+```bash
+./scripts/install-arch.sh                    # build from source and install
+./scripts/install-arch.sh ~/Astra.AppImage   # install a prebuilt AppImage
+```
+
 ### Rust commands go through the env wrapper
 
 On this machine the Rust toolchain is not on the default `PATH`. All

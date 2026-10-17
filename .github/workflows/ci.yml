@@ -28,6 +28,7 @@ jobs:
       - name: Install system dependencies
         run: |
           dnf install -y @development-tools git nodejs npm curl tar gzip file findutils \
+            clang glibc-devel \
             webkit2gtk4.1-devel gtk3-devel libappindicator-gtk3-devel \
             librsvg2-devel patchelf \
             pipewire-devel dbus-devel libxcb-devel libXrandr-devel mesa-libgbm-devel \
