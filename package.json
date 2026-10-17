@@ -3,7 +3,7 @@
   "productName": "Astra",
   "version": "0.1.0",
   "private": true,
-  "description": "Astra — a local-first, permission-safe desktop AI assistant that executes real work through a risk-gated tool system.",
+  "description": "Astra: a local-first, permission-safe desktop AI assistant that executes real work through a risk-gated tool system.",
   "author": "AmanicX",
   "license": "Apache-2.0",
   "repository": {
@@ -18,7 +18,8 @@
     "test": "vitest run",
     "tauri": "tauri",
     "icon": "tauri icon scripts/astra-icon-src.png",
-    "typecheck": "tsc -b --pretty"
+    "typecheck": "tsc -b --pretty",
+    "check:dashes": "node scripts/check-website-dashes.mjs website"
   },
   "dependencies": {
     "@fontsource-variable/schibsted-grotesk": "^5.2.5",

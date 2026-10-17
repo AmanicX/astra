@@ -8,7 +8,7 @@ agent orchestration — with every consequential action approved by a native
 permission engine in the shell, never by the model.
 
 > Status: **v0.1.0-pre.1**, public pre-release. Backend compiles and tests green
-> on Windows; Linux packages (`.deb`, `.rpm`, `.AppImage`) build from the same
+> on Windows; Linux packages (`.rpm`, `.AppImage`) build from the same
 > source. The UI is built and passes typecheck/build/tests. Your API key is
 > supplied after install through in-app settings; offline operation is available
 > through the built-in `mock` provider.
@@ -31,7 +31,8 @@ permission engine in the shell, never by the model.
   summoned by a global shortcut.
 
 See [PRODUCT.md](PRODUCT.md) for the product definition and [DESIGN.md](DESIGN.md)
-for the visual direction.
+for the visual direction. The product site lives in `website/` and deploys to
+<https://amanicx.github.io/astra/>.
 
 ## Requirements
 

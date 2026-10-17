@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Astra">
+  <rect width="64" height="64" rx="14" fill="#12100e" />
+  <rect x="0.5" y="0.5" width="63" height="63" rx="13.5" fill="none" stroke="#2a241d" />
+  <g transform="translate(8 8) scale(2)">
+    <path
+      d="M12 2c.5 4.7 1.6 6.9 3.1 8.4S18.6 12 21 12c-4.2.6-6.3 1.4-7.7 2.8S11.4 18.4 12 22c-.6-4.2-1.4-6.3-2.8-7.7S5.4 12.6 2 12c4.2-.6 5.9-1.3 7.2-2.6S11.4 6 12 2Z"
+      fill="#d9482b" />
+  </g>
+</svg>

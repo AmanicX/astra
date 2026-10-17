@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Product website under `website/`, published to GitHub Pages at
+  `https://amanicx.github.io/astra/` by `.github/workflows/pages.yml`.
+- Self-hosted Schibsted Grotesk and Literata web fonts, an SVG favicon, and a
+  generated Open Graph image (1200x630).
+- `npm run check:dashes`, a guard that fails if an em or en dash reaches the site,
+  wired into the Pages workflow.
+
 ## [0.1.0-pre.1] - 2026-10-17
 
 ### Added

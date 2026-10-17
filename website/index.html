@@ -1,0 +1,510 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Astra: Your AI Desktop Assistant</title>
+    <meta
+      name="description"
+      content="Astra is a local-first AI desktop assistant for Windows and Linux. Talk to it, research the web, run your apps and files, and keep every consequential action behind your approval."
+    />
+    <meta name="theme-color" content="#12100e" />
+    <meta name="color-scheme" content="dark" />
+    <link rel="canonical" href="https://amanicx.github.io/astra/" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Astra" />
+    <meta property="og:title" content="Astra: Your AI Desktop Assistant" />
+    <meta
+      property="og:description"
+      content="A local-first desktop assistant for Windows and Linux. Voice, computer control, research, and coding workflows, gated by a native permission engine."
+    />
+    <meta property="og:url" content="https://amanicx.github.io/astra/" />
+    <meta property="og:image" content="https://amanicx.github.io/astra/assets/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Astra: Your AI Desktop Assistant" />
+    <meta
+      name="twitter:description"
+      content="A local-first desktop assistant for Windows and Linux, with a native permission engine."
+    />
+    <meta name="twitter:image" content="https://amanicx.github.io/astra/assets/og.png" />
+
+    <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="./assets/favicon.svg" />
+
+    <link rel="preload" as="font" type="font/woff2" crossorigin
+      href="./assets/fonts/schibsted-grotesk-latin-wght-normal.woff2" />
+    <link rel="preload" as="font" type="font/woff2" crossorigin
+      href="./assets/fonts/literata-latin-400-normal.woff2" />
+
+    <link rel="stylesheet" href="./styles/tokens.css" />
+    <link rel="stylesheet" href="./styles/site.css" />
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+
+    <svg width="0" height="0" aria-hidden="true" focusable="false" class="defs">
+      <symbol id="mark" viewBox="0 0 24 24">
+        <path
+          d="M12 2c.5 4.7 1.6 6.9 3.1 8.4S18.6 12 21 12c-4.2.6-6.3 1.4-7.7 2.8S11.4 18.4 12 22c-.6-4.2-1.4-6.3-2.8-7.7S5.4 12.6 2 12c4.2-.6 5.9-1.3 7.2-2.6S11.4 6 12 2Z"
+          fill="currentColor" />
+      </symbol>
+    </svg>
+
+    <header class="bar" id="top">
+      <div class="bar-in">
+        <a class="brand" href="#top" aria-label="Astra, back to top">
+          <svg class="mark" aria-hidden="true"><use href="#mark" /></svg>
+          <span>Astra</span>
+        </a>
+        <nav class="nav" aria-label="Primary">
+          <a href="#capabilities">Capabilities</a>
+          <a href="#showcase">Showcase</a>
+          <a href="#build">Build</a>
+          <a href="#download">Download</a>
+          <a class="nav-gh" href="https://github.com/AmanicX/astra" rel="noopener">GitHub</a>
+        </nav>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu">
+          <span></span><span></span>
+        </button>
+      </div>
+      <div class="mobile-nav" id="mobile-nav" hidden>
+        <a href="#capabilities">Capabilities</a>
+        <a href="#showcase">Showcase</a>
+        <a href="#build">Build</a>
+        <a href="#download">Download</a>
+        <a href="https://github.com/AmanicX/astra" rel="noopener">GitHub</a>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero">
+        <div class="hero-copy">
+          <h1 class="hero-h1">Your computer. Your assistant. Your control.</h1>
+          <p class="hero-lede">
+            Astra is a local-first desktop assistant for Windows and Linux. It talks with you,
+            researches the web, runs your apps and files, and asks before anything consequential.
+            The native shell holds the permissions; the model only proposes.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="https://github.com/AmanicX/astra/releases/latest" rel="noopener">
+              Download for Windows
+            </a>
+            <a class="link-arrow" href="https://github.com/AmanicX/astra" rel="noopener">
+              View source on GitHub
+            </a>
+          </div>
+          <p class="hero-note">Windows 11 with WebView2. Fedora, RHEL, and Arch on Linux.</p>
+        </div>
+
+        <div class="hero-stage" data-reveal>
+          <div class="fragment window" data-ui>
+            <div class="win-top">
+              <span class="mark-sm" aria-hidden="true"><svg class="mark"><use href="#mark" /></svg></span>
+              <span class="win-title">Conversation</span>
+              <span class="win-spacer"></span>
+              <span class="pill pill-quiet">gpt-oss-20b</span>
+              <span class="dot-ok" title="Provider connected"></span>
+            </div>
+
+            <div class="win-body">
+              <div class="msg msg-user">
+                <p>Set my volume to 30% and tell me what is on my screen.</p>
+              </div>
+
+              <div class="tool-row">
+                <span class="tool-name">audio.set_level</span>
+                <span class="chip chip-moderate">moderate</span>
+                <span class="tool-state state-done">done</span>
+                <span class="tool-out">Volume set to 30%.</span>
+              </div>
+
+              <div class="msg msg-astra streaming">
+                <p>Volume is at 30 percent. Capturing your screen now, then I will describe what I see.</p>
+              </div>
+
+              <div class="approval" data-approval>
+                <div class="approval-head">
+                  <span class="tool-name">screen.capture</span>
+                  <span class="chip chip-high">high risk</span>
+                </div>
+                <p class="approval-q">Astra wants to capture the current screen to answer your question.</p>
+                <div class="approval-actions">
+                  <button class="btn btn-small btn-primary" type="button" data-approve>Approve once</button>
+                  <button class="btn btn-small btn-ghost" type="button" data-deny>Deny</button>
+                  <span class="approval-result" role="status" aria-live="polite"></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="composer">
+              <span class="mic" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="16" height="16">
+                  <path d="M12 3a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V6a3 3 0 0 0-3-3Z" fill="currentColor" />
+                  <path d="M6 11.5a6 6 0 0 0 12 0" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+                  <path d="M12 17.5V21" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+                </svg>
+              </span>
+              <input class="composer-input" type="text" aria-label="Message Astra"
+                placeholder="Ask Astra anything..." value="Set my volume to 30% and tell me what is on my screen." />
+              <button class="send" type="button" aria-label="Send message">
+                <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true">
+                  <path d="M4 12h13M12 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </button>
+            </div>
+          </div>
+          <p class="stage-note">An illustrative turn. Tools shown are real, with their risk tiers.</p>
+        </div>
+      </section>
+
+      <section class="intro">
+        <p class="lead" data-reveal>
+          Astra turns natural language into work done on your machine. It is not a chat window
+          bolted onto a desktop: it is a set of real tools that read, run, and report, and it
+          hands you the decision whenever the stakes rise.
+        </p>
+        <div class="cols">
+          <div class="col" data-reveal>
+            <p><strong>What it is.</strong> A desktop application for Windows and Linux. A Rust
+              core owns every capability, and the interface is a typed client over a command
+              bridge, so the assistant can only act through tools you can inspect.</p>
+          </div>
+          <div class="col" data-reveal>
+            <p><strong>What it does.</strong> System control, file work with backups, web
+              research, screen awareness, and coding workflows. Every tool declares a risk tier
+              before it runs.</p>
+          </div>
+          <div class="col" data-reveal>
+            <p><strong>How it stays yours.</strong> Conversation history and memory live in a
+              local SQLite database. Provider keys live in the operating system credential
+              store, never in the database or the logs.</p>
+          </div>
+          <div class="col" data-reveal>
+            <p><strong>Where it runs.</strong> Built for Windows 11 with the WebView2 runtime,
+              with native packages for Fedora and RHEL and a portable image for Arch.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="caps" id="capabilities">
+        <h2 class="section-h">One assistant for the whole desk</h2>
+
+        <div class="cap">
+          <div class="cap-copy">
+            <h3>Talk to it like a person.</h3>
+            <p>Hold the push-to-talk key, or summon the compact overlay with a global shortcut.
+              Your speech is transcribed, answered, and read back in a neural voice, with a
+              system voice as the offline fallback.</p>
+          </div>
+          <div class="cap-art" data-reveal>
+            <div class="fragment" data-ui>
+              <div class="ptt">
+                <span class="ptt-key" aria-hidden="true">Space</span>
+                <div class="wave" aria-hidden="true">
+                  <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+                </div>
+                <span class="ptt-live">listening</span>
+              </div>
+              <div class="ptt-line">"Research the latest on local inference and summarize it."</div>
+              <div class="ptt-line muted">Transcribed with Whisper. Read back with a neural voice.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cap cap-flip">
+          <div class="cap-copy">
+            <h3>Control the machine, gated by risk.</h3>
+            <p>Launch applications, set volume and brightness, read system information, switch
+              wallpaper and theme, and work with files. Each tool carries a tier, and the
+              high-risk ones wait for you.</p>
+          </div>
+          <div class="cap-art" data-reveal>
+            <div class="fragment" data-ui>
+              <ul class="tools">
+                <li><span class="tool-name">system.info</span><span class="chip chip-low">low</span><span class="tools-out">Reading CPU, memory, disks</span></li>
+                <li><span class="tool-name">apps.launch</span><span class="chip chip-moderate">moderate</span><span class="tools-out">Opening your editor</span></li>
+                <li><span class="tool-name">files.write</span><span class="chip chip-moderate">moderate</span><span class="tools-out">Backup, then write</span></li>
+                <li class="tools-active"><span class="tool-name">shell.run</span><span class="chip chip-high">high</span><span class="tools-out">Waiting for approval</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="cap">
+          <div class="cap-copy">
+            <h3>Read the web, then cite it.</h3>
+            <p>Search the web, open the result that matters, and pull clean text out of the page
+              before it reaches the model. Page content can inform an answer, and it can never
+              grant a permission.</p>
+          </div>
+          <div class="cap-art" data-reveal>
+            <div class="fragment" data-ui>
+              <div class="search-bar"><span class="search-dot" aria-hidden="true"></span>local inference, latest</div>
+              <div class="result">
+                <span class="result-host">example.dev</span>
+                <p class="result-title">Quantization and the new small models</p>
+                <p class="result-snip">Extracted, stripped of markup, and summarized before it reaches the model.</p>
+              </div>
+              <div class="result result-dim">
+                <span class="result-host">notes.example</span>
+                <p class="result-title">Running a 20B model on a laptop</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cap cap-flip">
+          <div class="cap-copy">
+            <h3>It can look at your screen.</h3>
+            <p>Capture the screen and send the frame to a vision model for a grounded answer
+              about what is actually in front of you. Capture is a high-risk tool, so it asks
+              first.</p>
+          </div>
+          <div class="cap-art" data-reveal>
+            <div class="fragment" data-ui>
+              <div class="shot">
+                <div class="shot-bar"><span></span><span></span><span></span><em>captured</em></div>
+                <div class="shot-body">
+                  <span class="shot-line w70"></span>
+                  <span class="shot-line w45"></span>
+                  <span class="shot-block"></span>
+                  <span class="shot-line w60"></span>
+                </div>
+              </div>
+              <p class="shot-answer">A code editor is open with a failing test on line 42. The
+                assertion expects three items and receives two.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="cap">
+          <div class="cap-copy">
+            <h3>Memory that lives on your disk.</h3>
+            <p>Notes you ask it to keep, and the history of what you have done together, persist
+              in a local database you can read, search, and delete. Nothing is sent to a memory
+              service.</p>
+          </div>
+          <div class="cap-art" data-reveal>
+            <div class="fragment" data-ui>
+              <ul class="mem">
+                <li><span class="mem-tag">preference</span>Default browser is Firefox.</li>
+                <li><span class="mem-tag">project</span>Docs live in <code>C:\work\astra-docs</code>.</li>
+                <li><span class="mem-tag">routine</span>Summarize the inbox each morning.</li>
+              </ul>
+              <p class="mem-foot">Stored locally in SQLite. Exportable and removable.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="showcase" id="showcase">
+        <h2 class="section-h">One turn, three states</h2>
+        <p class="section-sub">A consequential action moves through the same gate every time:
+          it arrives, it waits for your call, and then it is done.</p>
+
+        <div class="states">
+          <div class="state">
+            <span class="state-name">Arrives</span>
+            <div class="fragment row-frag" data-ui>
+              <span class="tool-name">files.write</span>
+              <span class="chip chip-moderate">moderate</span>
+              <span class="row-arg">report.md</span>
+            </div>
+          </div>
+
+          <div class="state">
+            <span class="state-name">Waits for you</span>
+            <div class="fragment row-frag live" data-ui>
+              <span class="tool-name">files.write</span>
+              <span class="chip chip-moderate">moderate</span>
+              <span class="row-arg">report.md</span>
+              <div class="row-actions">
+                <button class="btn btn-small btn-primary" type="button" data-run>Approve</button>
+                <button class="btn btn-small btn-ghost" type="button" data-run-deny>Deny</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="state">
+            <span class="state-name">Done</span>
+            <div class="fragment row-frag done" data-ui>
+              <span class="tool-name">files.write</span>
+              <span class="chip chip-low">ok</span>
+              <span class="row-arg">report.md</span>
+              <span class="row-check" aria-hidden="true">written, backup kept</span>
+            </div>
+          </div>
+        </div>
+        <p class="stage-note">Approve the middle row to see the turn close.</p>
+      </section>
+
+      <section class="build" id="build">
+        <h2 class="build-h">Describe it, and Astra prepares the build</h2>
+        <div class="fields">
+          <article class="field f1">
+            <h3>Describe the app</h3>
+            <div class="fragment field-card" data-ui>
+              <p class="card-label">New task</p>
+              <p class="card-body">A small app that tracks my reading list and syncs to a file.</p>
+            </div>
+          </article>
+          <article class="field f2">
+            <h3>Clarify the requirements</h3>
+            <div class="fragment field-card" data-ui>
+              <p class="card-label">Questions</p>
+              <ul class="card-list">
+                <li>Which file format?</li>
+                <li>Single user or shared?</li>
+              </ul>
+            </div>
+          </article>
+          <article class="field f3">
+            <h3>Prepare the handoff</h3>
+            <div class="fragment field-card" data-ui>
+              <p class="card-label">Brief</p>
+              <ul class="card-list">
+                <li>Scope and stack</li>
+                <li>Acceptance checks</li>
+              </ul>
+            </div>
+          </article>
+          <article class="field f4">
+            <h3>Hand it to an agent</h3>
+            <div class="fragment field-card" data-ui>
+              <p class="card-label">Agent</p>
+              <p class="card-body">Prompt delivered. Astra follows the run and reports back.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="faq">
+        <div class="faq-grid">
+          <h2 class="section-h faq-h">Questions</h2>
+          <div class="tiles">
+            <details class="tile" name="faq" open>
+              <summary>Is Astra a chat app?</summary>
+              <p>No. The conversation is the interface, but the substance is a set of tools that
+                act on your computer. It can read system information, launch applications,
+                change supported settings, work with files, search the web, and capture the
+                screen.</p>
+            </details>
+            <details class="tile" name="faq">
+              <summary>Which models can it use?</summary>
+              <p>Astra supports Groq, OpenAI, any OpenAI-compatible endpoint, a local Ollama
+                server, a custom provider, and an offline test provider. The default chat model
+                is gpt-oss-20b, and the default vision model is Llama 4 Scout.</p>
+            </details>
+            <details class="tile" name="faq">
+              <summary>Where do my API keys go?</summary>
+              <p>Into the operating system credential store: Windows Credential Manager or the
+                Linux Secret Service. They are never written to the database, and never written
+                to logs.</p>
+            </details>
+            <details class="tile" name="faq">
+              <summary>Can it change files without asking?</summary>
+              <p>Consequential actions are declared at a high risk tier and require an
+                action-specific approval in the native shell. Lower-risk reads and supported
+                settings can run directly. The model proposes; the shell decides.</p>
+            </details>
+            <details class="tile" name="faq">
+              <summary>Does it work offline?</summary>
+              <p>Partially. With the offline test provider you can run the whole interface with
+                no key and no network. Local models can be used through Ollama. Web research and
+                cloud models need a connection.</p>
+            </details>
+            <details class="tile" name="faq">
+              <summary>Which platforms are supported?</summary>
+              <p>Windows 11 is the primary, best-tested target. On Linux, Fedora and RHEL have a
+                native package and Arch has a portable image. The Linux builds are early and
+                less tested than Windows.</p>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <section class="download" id="download">
+        <h2 class="section-h">Get Astra</h2>
+        <p class="section-sub">Astra is an early pre-release. Everything below comes from the
+          official GitHub releases.</p>
+
+        <div class="dl-grid">
+          <article class="dl">
+            <h3>Windows</h3>
+            <p class="dl-meta">Windows 11 or later, with the WebView2 runtime.</p>
+            <a class="btn btn-primary" href="https://github.com/AmanicX/astra/releases/latest" rel="noopener">
+              Download the installer
+            </a>
+            <p class="dl-alt">Choose the NSIS <code>.exe</code> or the <code>.msi</code> on the
+              releases page.</p>
+          </article>
+
+          <article class="dl">
+            <h3>Linux</h3>
+            <p class="dl-meta">Fedora and RHEL use the RPM package. Arch and other distributions
+              use the portable image.</p>
+            <a class="btn btn-outline" href="https://github.com/AmanicX/astra/releases/latest" rel="noopener">
+              Download from releases
+            </a>
+            <p class="dl-alt">Or build and install from source:</p>
+            <pre class="code"><code>git clone https://github.com/AmanicX/astra.git
+cd astra
+./scripts/install-arch.sh     <span class="c"># Arch and CachyOS</span>
+./scripts/install-linux.sh    <span class="c"># Fedora and RHEL</span></code></pre>
+          </article>
+        </div>
+
+        <div class="dl-links">
+          <a class="link-arrow" href="https://github.com/AmanicX/astra" rel="noopener">Repository</a>
+          <a class="link-arrow" href="https://github.com/AmanicX/astra/releases" rel="noopener">All releases</a>
+          <a class="link-arrow" href="https://github.com/AmanicX/astra/blob/main/README.md" rel="noopener">Install guide</a>
+          <a class="link-arrow" href="https://github.com/AmanicX/astra/issues" rel="noopener">Report an issue</a>
+        </div>
+      </section>
+
+      <section class="closing">
+        <div class="closing-in">
+          <div class="closing-copy">
+            <h2>First run, in a minute.</h2>
+            <p>Pick a provider, paste a key, and the workspace opens. Everything after that is a
+              conversation with a tool system that answers to you.</p>
+          </div>
+          <div class="closing-art" data-reveal>
+            <div class="fragment dialog" data-ui>
+              <p class="dialog-title">Connect your provider</p>
+              <label class="dialog-field">
+                <span>API key</span>
+                <input type="text" value="gsk_live_xxxxxxxxxxxxxxxx" aria-label="API key" />
+              </label>
+              <div class="segmented" role="group" aria-label="Provider">
+                <button type="button" class="seg is-on">Groq</button>
+                <button type="button" class="seg">OpenAI</button>
+                <button type="button" class="seg">Ollama</button>
+              </div>
+              <button class="btn btn-primary btn-block" type="button">Connect and open workspace</button>
+              <p class="dialog-foot">Stored in the OS credential store, never in the database.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="foot">
+      <div class="foot-in">
+        <span class="foot-a">Astra, a local-first desktop assistant.</span>
+        <nav class="foot-links" aria-label="Footer">
+          <a href="https://github.com/AmanicX/astra" rel="noopener">GitHub</a>
+          <a href="https://github.com/AmanicX/astra/releases" rel="noopener">Releases</a>
+          <a href="https://github.com/AmanicX/astra/blob/main/README.md" rel="noopener">Docs</a>
+          <a href="https://github.com/AmanicX/astra/blob/main/LICENSE" rel="noopener">Apache-2.0</a>
+        </nav>
+        <span class="foot-b">2026 Astra</span>
+      </div>
+    </footer>
+
+    <script src="./scripts/site.js" defer></script>
+  </body>
+</html>

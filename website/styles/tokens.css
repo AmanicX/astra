@@ -1,0 +1,115 @@
+/* Astra website design tokens.
+   Mirrors the desktop app's letterpress system: an ink-black warm ground,
+   ivory type, a single vermilion accent, and seams instead of shadows. */
+
+@font-face {
+  font-family: "Schibsted Grotesk Variable";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400 900;
+  src: url("../assets/fonts/schibsted-grotesk-latin-wght-normal.woff2")
+    format("woff2-variations");
+}
+
+@font-face {
+  font-family: "Literata";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url("../assets/fonts/literata-latin-400-normal.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Literata";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 500;
+  src: url("../assets/fonts/literata-latin-500-normal.woff2") format("woff2");
+}
+
+:root {
+  color-scheme: dark;
+
+  --ground-0: #12100e;
+  --ground-1: #17140f;
+  --ground-2: #1e1a14;
+  --ground-3: #262019;
+  --ground-4: #302a21;
+  --ground-inset: #0c0b09;
+
+  --ink-0: #f2ede3;
+  --ink-1: #cec7b8;
+  --ink-2: #a79e8d;
+  --ink-3: #8a8172;
+  --ink-4: #4b453b;
+
+  --seam: rgba(242, 237, 227, 0.1);
+  --seam-strong: rgba(242, 237, 227, 0.16);
+  --seam-soft: rgba(242, 237, 227, 0.055);
+
+  --vermilion: #d9482b;
+  --vermilion-ink: #f26a4c;
+  --vermilion-dim: rgba(217, 72, 43, 0.16);
+  --accent-fill: #b63a1e;
+  --accent-fill-hover: #a5341a;
+  --green-ink: #6fa98a;
+  --amber-ink: #e0a94f;
+  --red-ink: #e2705a;
+
+  --bg: var(--ground-0);
+  --panel: var(--ground-1);
+  --raised: var(--ground-2);
+  --line: var(--seam);
+  --text: var(--ink-0);
+  --text-dim: var(--ink-2);
+  --accent: var(--vermilion);
+  --accent-ink: var(--vermilion-ink);
+
+  --font-ui: "Schibsted Grotesk Variable", "Schibsted Grotesk", system-ui,
+    -apple-system, "Segoe UI", sans-serif;
+  --font-prose: "Literata", Georgia, "Times New Roman", serif;
+  --font-mono: "Cascadia Code", "JetBrains Mono", ui-monospace, Consolas, monospace;
+
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 24px;
+  --sp-6: 32px;
+  --sp-7: 48px;
+  --sp-8: 64px;
+  --sp-9: 96px;
+  --sp-10: 128px;
+
+  --r-1: 4px;
+  --r-2: 7px;
+  --r-3: 10px;
+  --r-4: 14px;
+
+  --shadow-pop: 0 18px 44px -20px rgba(0, 0, 0, 0.85),
+    0 2px 0 0 rgba(0, 0, 0, 0.4);
+  --shadow-modal: 0 30px 80px -28px rgba(0, 0, 0, 0.9);
+
+  --dur-1: 110ms;
+  --dur-2: 170ms;
+  --dur-3: 260ms;
+  --dur-4: 360ms;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+  --ring: rgba(217, 72, 43, 0.55);
+
+  --measure: 720px;
+  --margin: clamp(20px, 4.5vw, 80px);
+  --maxw: 1280px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-1: 0ms;
+    --dur-2: 0ms;
+    --dur-3: 0ms;
+    --dur-4: 0ms;
+  }
+}
