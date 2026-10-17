@@ -7,8 +7,8 @@
 #   cd astra
 #   ./scripts/install-linux.sh
 #
-# Supports Debian/Ubuntu (.deb), Fedora/RHEL (.rpm), and Arch (AppImage),
-# plus a generic AppImage fallback for any other distribution.
+# Targets Fedora/RHEL (.rpm) and Arch (AppImage). Any other distribution
+# falls back to the portable AppImage.
 #
 set -euo pipefail
 
@@ -35,12 +35,17 @@ if [ -r /etc/os-release ]; then
 fi
 
 case " $DISTRO_ID $DISTRO_LIKE " in
-  *debian*|*ubuntu*|*mint*|*pop*) FAMILY=debian ;;
   *fedora*|*rhel*|*centos*|*rocky*|*almalinux*) FAMILY=rpm ;;
   *arch*|*manjaro*|*endeavouros*) FAMILY=arch ;;
   *) FAMILY=unknown ;;
 esac
 info "Detected distro: ${DISTRO_ID:-unknown} (family: $FAMILY)"
+
+if [ "$FAMILY" = "rpm" ]; then
+  BUNDLES="rpm"
+else
+  BUNDLES="appimage"
+fi
 
 if [ "$(id -u)" -eq 0 ]; then
   SUDO=""
@@ -53,24 +58,12 @@ fi
 
 install_system_deps() {
   case "$FAMILY" in
-    debian)
-      info "Installing build dependencies via apt (needs sudo)..."
-      $SUDO apt-get update
-      $SUDO apt-get install -y --no-install-recommends \
-        build-essential curl wget file pkg-config libssl-dev \
-        libwebkit2gtk-4.1-dev libgtk-3-dev libayatana-appindicator3-dev \
-        librsvg2-dev patchelf \
-        libpipewire-0.3-dev libdbus-1-dev libxcb1-dev libxrandr-dev libgbm-dev
-      $SUDO apt-get install -y --no-install-recommends libfuse2 2>/dev/null \
-        || $SUDO apt-get install -y --no-install-recommends libfuse2t64 2>/dev/null \
-        || warn "libfuse2 not found; the AppImage may need --appimage-extract-and-run."
-      ;;
     rpm)
       info "Installing build dependencies via dnf (needs sudo)..."
       $SUDO dnf install -y \
         gcc gcc-c++ make curl wget file pkgconf-pkg-config openssl-devel \
         webkit2gtk4.1-devel gtk3-devel libappindicator-gtk3-devel \
-        librsvg2-devel patchelf fuse \
+        librsvg2-devel patchelf fuse fuse-libs desktop-file-utils \
         pipewire-devel dbus-devel libxcb-devel libXrandr-devel mesa-libgbm-devel
       ;;
     arch)
@@ -78,11 +71,13 @@ install_system_deps() {
       $SUDO pacman -Sy --needed --noconfirm \
         base-devel curl wget file pkgconf openssl \
         webkit2gtk-4.1 gtk3 libappindicator-gtk3 librsvg patchelf fuse2 \
+        desktop-file-utils \
         pipewire libdbus libxcb libxrandr mesa
       ;;
     *)
-      warn "Unknown distro family. Install these, then re-run this script:"
-      warn "  webkit2gtk-4.1, gtk3, libappindicator3, librsvg2, patchelf, openssl, a C toolchain"
+      warn "Unrecognised distribution; assuming AppImage."
+      warn "Install these manually if the build fails:"
+      warn "  webkit2gtk-4.1, gtk3, libappindicator3, librsvg2, patchelf, pipewire, dbus, openssl, a C toolchain"
       ;;
   esac
 }
@@ -128,8 +123,8 @@ ensure_node() {
 build_app() {
   info "Installing npm dependencies..."
   npm ci
-  info "Building Astra (release). The first build takes several minutes..."
-  npm run tauri build
+  info "Building Astra (release, bundles: $BUNDLES). The first build takes several minutes..."
+  npm run tauri build -- --bundles "$BUNDLES"
 }
 
 install_appimage() {
@@ -166,13 +161,6 @@ DESKTOP
 
 install_app() {
   case "$FAMILY" in
-    debian)
-      local deb
-      deb="$(ls "$BUNDLE_DIR"/deb/*.deb 2>/dev/null | head -n1 || true)"
-      [ -n "$deb" ] || die "No .deb was produced under $BUNDLE_DIR/deb"
-      info "Installing $(basename "$deb")..."
-      $SUDO apt-get install -y "$deb"
-      ;;
     rpm)
       local rpm
       rpm="$(ls "$BUNDLE_DIR"/rpm/*.rpm 2>/dev/null | head -n1 || true)"

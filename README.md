@@ -35,8 +35,8 @@ for the visual direction.
 
 ## Requirements
 
-- Windows 11 (primary target). Linux support targets Debian/Ubuntu, Fedora/RHEL,
-  and Arch; the Linux packages are early and less tested than Windows.
+- Windows 11 (primary target). Linux support targets Fedora/RHEL and Arch; the
+  Linux packages are early and less tested than Windows.
 - Node.js (v20+) and npm.
 - A Rust toolchain. This project is developed against a **user-space GNU
   toolchain** (`stable-x86_64-pc-windows-gnu`) with a portable LLVM-MinGW
@@ -55,7 +55,7 @@ Run the app in development (Vite + Tauri, hot reload):
 npm run tauri dev
 ```
 
-Build a release bundle (Windows: `nsis` + `msi`; Linux: `deb` + `rpm` + `AppImage`):
+Build a release bundle (Windows: `nsis` + `msi`; Linux: `rpm` + `AppImage`):
 
 ```powershell
 npm run tauri build
@@ -65,8 +65,8 @@ npm run tauri build
 
 Clone the repository and run the installer. It detects your distribution,
 installs the build dependencies, sets up Rust and Node if needed, builds Astra,
-and installs it (`.deb` on Debian/Ubuntu, `.rpm` on Fedora/RHEL, and a portable
-AppImage on Arch or any other distribution):
+and installs it (`.rpm` on Fedora/RHEL; a portable AppImage on Arch and other
+distributions):
 
 ```bash
 git clone https://github.com/AmanicX/astra.git

@@ -18,7 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Native permission engine: high-risk actions require action-specific approval.
 - Voice: push-to-talk, Whisper transcription, Edge neural TTS with system-voice fallback.
 - Windows installer (NSIS `.exe` and `.msi`).
-- Linux packages: `.deb`, `.rpm`, and portable `.AppImage`.
+- Linux packages: `.rpm` (Fedora/RHEL) and portable `.AppImage` (Arch).
 - One-shot Linux installer script at `scripts/install-linux.sh`.
 
 [Unreleased]: https://github.com/AmanicX/astra/compare/v0.1.0-pre.1...HEAD

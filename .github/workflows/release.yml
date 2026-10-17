@@ -9,33 +9,49 @@ permissions:
   contents: write
 
 jobs:
-  publish:
-    strategy:
-      fail-fast: false
-      matrix:
-        platform:
-          - ubuntu-22.04
-          - windows-latest
-    runs-on: ${{ matrix.platform }}
+  linux:
+    name: Linux (Fedora - rpm, AppImage)
+    runs-on: ubuntu-latest
+    container: fedora:latest
     steps:
+      - name: Install system dependencies
+        run: |
+          dnf install -y @development-tools git nodejs npm curl tar gzip file findutils \
+            webkit2gtk4.1-devel gtk3-devel libappindicator-gtk3-devel \
+            librsvg2-devel patchelf \
+            pipewire-devel dbus-devel libxcb-devel libXrandr-devel mesa-libgbm-devel \
+            openssl-devel fuse fuse-libs desktop-file-utils xdg-utils
+
       - uses: actions/checkout@v4
 
-      - name: Install Linux dependencies
-        if: matrix.platform == 'ubuntu-22.04'
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y \
-            libwebkit2gtk-4.1-dev \
-            libayatana-appindicator3-dev \
-            librsvg2-dev \
-            patchelf \
-            libpipewire-0.3-dev \
-            libdbus-1-dev \
-            libxcb1-dev \
-            libxrandr-dev \
-            libgbm-dev \
-            rpm \
-            libfuse2
+      - uses: dtolnay/rust-toolchain@stable
+
+      - run: npm ci
+
+      - name: Build and publish pre-release
+        uses: tauri-apps/tauri-action@v0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tagName: ${{ github.ref_name }}
+          releaseName: "Astra ${{ github.ref_name }}"
+          args: --bundles rpm,appimage
+          releaseBody: |
+            Pre-release testing build. Download the package for your platform below.
+
+            - **Windows** - `.exe` (NSIS) or `.msi`
+            - **Fedora / RHEL** - `.rpm`
+            - **Arch / other Linux** - `.AppImage` (portable)
+
+            Astra is local-first: you supply your own API key in Settings after installing.
+          releaseDraft: false
+          prerelease: true
+
+  windows:
+    name: Windows (NSIS, MSI)
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
 
       - uses: actions/setup-node@v4
         with:
@@ -57,11 +73,13 @@ jobs:
         with:
           tagName: ${{ github.ref_name }}
           releaseName: "Astra ${{ github.ref_name }}"
+          args: --bundles nsis,msi
           releaseBody: |
-            Pre-release testing build. Download the installer for your platform below.
+            Pre-release testing build. Download the package for your platform below.
 
             - **Windows** - `.exe` (NSIS) or `.msi`
-            - **Linux** - `.deb` (Debian/Ubuntu), `.rpm` (Fedora/RHEL), `.AppImage` (portable; also runs on Arch)
+            - **Fedora / RHEL** - `.rpm`
+            - **Arch / other Linux** - `.AppImage` (portable)
 
             Astra is local-first: you supply your own API key in Settings after installing.
           releaseDraft: false
