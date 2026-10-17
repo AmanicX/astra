@@ -113,6 +113,7 @@ fn resolve_lnk(lnk: &Path) -> Option<String> {
     }
 }
 
+#[cfg(windows)]
 fn collect_registry_apps() -> Vec<AppEntry> {
     let mut out = Vec::new();
     for (hive, sub) in registry_hives() {
@@ -125,6 +126,12 @@ fn collect_registry_apps() -> Vec<AppEntry> {
     out
 }
 
+#[cfg(not(windows))]
+fn collect_registry_apps() -> Vec<AppEntry> {
+    Vec::new()
+}
+
+#[cfg(windows)]
 fn registry_hives() -> Vec<(winreg::RegKey, &'static str)> {
     use winreg::enums::*;
     let hkcu = winreg::RegKey::predef(HKEY_CURRENT_USER);
@@ -132,6 +139,7 @@ fn registry_hives() -> Vec<(winreg::RegKey, &'static str)> {
     vec![(hkcu, r"Software\Microsoft\Windows\CurrentVersion\Uninstall"), (hklm, r"Software\Microsoft\Windows\CurrentVersion\Uninstall")]
 }
 
+#[cfg(windows)]
 fn read_uninstall(hive: &winreg::RegKey, sub: &str, view64: bool) -> Option<Vec<AppEntry>> {
     use winreg::enums::*;
     let access = if view64 {

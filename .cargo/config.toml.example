@@ -1,0 +1,14 @@
+# Optional local Cargo configuration for the user-space Windows-GNU toolchain.
+#
+# scripts/astra-env.ps1 already exports the linker and rustflags as environment
+# variables (CARGO_TARGET_X86_64_PC_WINDOWS_GNU_LINKER / _RUSTFLAGS), so you do
+# NOT need this file when you build through that wrapper. Copy this example to
+# `.cargo/config.toml` (which is git-ignored) only if you build with an
+# LLVM-MinGW toolchain directly, and point the paths at your own install.
+#
+# [target.x86_64-pc-windows-gnu]
+# linker = "C:/path/to/llvm-mingw/bin/x86_64-w64-mingw32-gcc.exe"
+# rustflags = ["-L", "C:/path/to/astra/src-tauri/.linker"]
+
+[net]
+retry = 3

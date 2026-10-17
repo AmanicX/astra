@@ -12,4 +12,5 @@ target/
 Thumbs.db
 release/
 src-tauri/.linker/
+.cargo/config.toml
 *.tsbuildinfo

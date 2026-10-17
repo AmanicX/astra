@@ -9,6 +9,7 @@ $Toolchain = "$env:USERPROFILE\toolchains\llvm-mingw-20261006-ucrt-x86_64"
 $env:PATH = "$Toolchain\bin;$env:USERPROFILE\.cargo\bin;$env:PATH"
 $env:CC_x86_64_pc_windows_gnu = "$Toolchain\bin\x86_64-w64-mingw32-gcc.exe"
 $env:CXX_x86_64_pc_windows_gnu = "$Toolchain\bin\x86_64-w64-mingw32-g++.exe"
+$env:CARGO_TARGET_X86_64_PC_WINDOWS_GNU_LINKER = "$Toolchain\bin\x86_64-w64-mingw32-gcc.exe"
 
 # Tauri copies WebView2Loader.dll next to the app binary (src-tauri\target\debug)
 # but cargo launches unit-test harnesses from target\debug\deps. Put the output
@@ -31,6 +32,8 @@ if (Test-Path $Unwind) {
     }
   }
 }
+
+$env:CARGO_TARGET_X86_64_PC_WINDOWS_GNU_RUSTFLAGS = "-L `"$ShimDir`""
 
 # Invoke the wrapped command. Slice carefully: a single-argument command
 # (e.g. `astra-env.ps1 npm`) has no `[1..1]` tail to index into.

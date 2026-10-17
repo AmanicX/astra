@@ -7,9 +7,10 @@ system — OS control, app launching, screen awareness, web research, and coding
 agent orchestration — with every consequential action approved by a native
 permission engine in the shell, never by the model.
 
-> Status: **v0.1.0**, pre-release. Backend compiles and tests green on Windows;
-> the UI is built and passes typecheck/build/tests. The Groq API key is supplied
-> by the user post-build through in-app settings; offline operation is available
+> Status: **v0.1.0-pre.1**, public pre-release. Backend compiles and tests green
+> on Windows; Linux packages (`.deb`, `.rpm`, `.AppImage`) build from the same
+> source. The UI is built and passes typecheck/build/tests. Your API key is
+> supplied after install through in-app settings; offline operation is available
 > through the built-in `mock` provider.
 
 ## Highlights
@@ -34,8 +35,8 @@ for the visual direction.
 
 ## Requirements
 
-- Windows 11 (primary target). Linux adapters are implemented behind platform
-  interfaces but not yet verified on real hardware.
+- Windows 11 (primary target). Linux support targets Debian/Ubuntu, Fedora/RHEL,
+  and Arch; the Linux packages are early and less tested than Windows.
 - Node.js (v20+) and npm.
 - A Rust toolchain. This project is developed against a **user-space GNU
   toolchain** (`stable-x86_64-pc-windows-gnu`) with a portable LLVM-MinGW
@@ -54,10 +55,23 @@ Run the app in development (Vite + Tauri, hot reload):
 npm run tauri dev
 ```
 
-Build a release bundle (`nsis` + `msi`):
+Build a release bundle (Windows: `nsis` + `msi`; Linux: `deb` + `rpm` + `AppImage`):
 
 ```powershell
 npm run tauri build
+```
+
+### Installing on Linux
+
+Clone the repository and run the installer. It detects your distribution,
+installs the build dependencies, sets up Rust and Node if needed, builds Astra,
+and installs it (`.deb` on Debian/Ubuntu, `.rpm` on Fedora/RHEL, and a portable
+AppImage on Arch or any other distribution):
+
+```bash
+git clone https://github.com/AmanicX/astra.git
+cd astra
+./scripts/install-linux.sh
 ```
 
 ### Rust commands go through the env wrapper
@@ -116,11 +130,11 @@ module map and data flow.
 ```
 src/                 React front end (workspace window + overlay)
 src-tauri/           Rust core, Tauri config, capabilities, icons
-scripts/             Toolchain wrapper + icon generation
+scripts/             Toolchain wrapper, installers, icon generation
 tests/               Vitest front-end tests
+.github/             CI and release workflows, issue templates
 ```
 
 ## License
 
-No license has been selected yet. All rights reserved by the author until one is
-added.
+Licensed under the [Apache License 2.0](LICENSE).

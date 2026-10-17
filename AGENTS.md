@@ -73,7 +73,8 @@ If you changed `src/styles`, `src/components`, `src/App.tsx`, or
   `camelCase`.
 - **Secrets never touch the DB or logs.** They live in the OS credential store
   via `credentials.rs`. See [SECURITY.md](SECURITY.md).
-- **Do not add a git remote or push.** Local commits are fine.
+- **Remote and pushes are the maintainer's job.** Local commits are fine; do not
+  add a git remote or push unless explicitly asked.
 
 ## Layout
 

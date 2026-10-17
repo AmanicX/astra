@@ -3,6 +3,13 @@
   "productName": "Astra",
   "version": "0.1.0",
   "private": true,
+  "description": "Astra — a local-first, permission-safe desktop AI assistant that executes real work through a risk-gated tool system.",
+  "author": "AmanicX",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AmanicX/astra.git"
+  },
   "type": "module",
   "scripts": {
     "dev": "vite",
