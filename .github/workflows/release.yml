@@ -29,6 +29,11 @@ jobs:
             libayatana-appindicator3-dev \
             librsvg2-dev \
             patchelf \
+            libpipewire-0.3-dev \
+            libdbus-1-dev \
+            libxcb1-dev \
+            libxrandr-dev \
+            libgbm-dev \
             rpm \
             libfuse2
 

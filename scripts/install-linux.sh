@@ -59,7 +59,8 @@ install_system_deps() {
       $SUDO apt-get install -y --no-install-recommends \
         build-essential curl wget file pkg-config libssl-dev \
         libwebkit2gtk-4.1-dev libgtk-3-dev libayatana-appindicator3-dev \
-        librsvg2-dev patchelf
+        librsvg2-dev patchelf \
+        libpipewire-0.3-dev libdbus-1-dev libxcb1-dev libxrandr-dev libgbm-dev
       $SUDO apt-get install -y --no-install-recommends libfuse2 2>/dev/null \
         || $SUDO apt-get install -y --no-install-recommends libfuse2t64 2>/dev/null \
         || warn "libfuse2 not found; the AppImage may need --appimage-extract-and-run."
@@ -69,13 +70,15 @@ install_system_deps() {
       $SUDO dnf install -y \
         gcc gcc-c++ make curl wget file pkgconf-pkg-config openssl-devel \
         webkit2gtk4.1-devel gtk3-devel libappindicator-gtk3-devel \
-        librsvg2-devel patchelf fuse
+        librsvg2-devel patchelf fuse \
+        pipewire-devel dbus-devel libxcb-devel libXrandr-devel mesa-libgbm-devel
       ;;
     arch)
       info "Installing build dependencies via pacman (needs sudo)..."
       $SUDO pacman -Sy --needed --noconfirm \
         base-devel curl wget file pkgconf openssl \
-        webkit2gtk-4.1 gtk3 libappindicator-gtk3 librsvg patchelf fuse2
+        webkit2gtk-4.1 gtk3 libappindicator-gtk3 librsvg patchelf fuse2 \
+        pipewire libdbus libxcb libxrandr mesa
       ;;
     *)
       warn "Unknown distro family. Install these, then re-run this script:"

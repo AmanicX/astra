@@ -33,7 +33,12 @@ jobs:
             libwebkit2gtk-4.1-dev \
             libayatana-appindicator3-dev \
             librsvg2-dev \
-            patchelf
+            patchelf \
+            libpipewire-0.3-dev \
+            libdbus-1-dev \
+            libxcb1-dev \
+            libxrandr-dev \
+            libgbm-dev
 
       - uses: actions/setup-node@v4
         with:
