@@ -16,7 +16,7 @@ window.detectPlatform = function () {
   return 'unknown';
 };
 
-document.addEventListener('DOMContentLoaded', () => {
+function initClient() {
   // 2. Setup Copy Buttons
   document.querySelectorAll('.copy-btn').forEach(btn => {
     btn.addEventListener('click', async () => {
@@ -74,7 +74,62 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // 5. Catalog Search & Filter
+  // 5. Expandable Pill Dropdown Menus
+  document.querySelectorAll('.pill-dropdown').forEach(dropdown => {
+    const trigger = dropdown.querySelector('.pill-dropdown-trigger');
+    const menu = dropdown.querySelector('.pill-dropdown-menu');
+    const items = dropdown.querySelectorAll('.pill-dropdown-item');
+    const hiddenInput = dropdown.querySelector('input[type="hidden"]');
+    const label = dropdown.querySelector('.selected-label');
+
+    if (!trigger || !menu || !hiddenInput) return;
+
+    trigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = dropdown.classList.contains('open');
+      // Close any other open dropdowns
+      document.querySelectorAll('.pill-dropdown.open').forEach(d => {
+        if (d !== dropdown) d.classList.remove('open');
+      });
+      dropdown.classList.toggle('open', !isOpen);
+      trigger.setAttribute('aria-expanded', !isOpen ? 'true' : 'false');
+    });
+
+    items.forEach(item => {
+      item.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const val = item.getAttribute('data-value') || 'all';
+        items.forEach(i => i.classList.remove('active'));
+        item.classList.add('active');
+        if (label) label.textContent = item.textContent.trim();
+        hiddenInput.value = val;
+        dropdown.classList.remove('open');
+        trigger.setAttribute('aria-expanded', 'false');
+
+        // Dispatch change event to update filtered catalog
+        hiddenInput.dispatchEvent(new Event('change', { bubbles: true }));
+      });
+    });
+  });
+
+  // Close dropdowns on outside click or Escape
+  document.addEventListener('click', () => {
+    document.querySelectorAll('.pill-dropdown.open').forEach(d => {
+      d.classList.remove('open');
+      d.querySelector('.pill-dropdown-trigger')?.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.pill-dropdown.open').forEach(d => {
+        d.classList.remove('open');
+        d.querySelector('.pill-dropdown-trigger')?.setAttribute('aria-expanded', 'false');
+      });
+    }
+  });
+
+  // 6. Catalog Search & Filter
   const catalogSearchInput = document.getElementById('catalog-search');
   const catalogFilterCategory = document.getElementById('filter-category');
   const catalogFilterPlatform = document.getElementById('filter-platform');
@@ -117,4 +172,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (catalogFilterCategory) catalogFilterCategory.addEventListener('change', filterCatalog);
     if (catalogFilterPlatform) catalogFilterPlatform.addEventListener('change', filterCatalog);
   }
-});
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initClient);
+} else {
+  initClient();
+}
