@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
     platformTab.click();
     const highlightNotice = document.getElementById('detected-os-notice');
     if (highlightNotice) {
-      highlightNotice.innerText = `Detected ${detected.toUpperCase()} — recommended package selected.`;
+      highlightNotice.innerText = `Detected ${detected.toUpperCase()} - recommended package selected.`;
       highlightNotice.style.display = 'inline-flex';
     }
   }
