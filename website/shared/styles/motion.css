@@ -1,0 +1,195 @@
+/* ==========================================================================
+   AMANICX MOTION & SCROLL ENGINE (NEXORA INSPIRATION)
+   ========================================================================== */
+
+/* Top Scroll Progress Indicator */
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #FB7185, #E11D48, #9F1239);
+  z-index: 1000;
+  width: 0%;
+  transition: width 0.08s linear;
+  box-shadow: 0 0 10px rgba(225, 29, 72, 0.6);
+}
+
+/* Ambient Breathe & Glow Effects */
+@keyframes ambient-pulse {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1) translateY(0);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.05) translateY(-8px);
+  }
+}
+
+.ambient-flare {
+  position: absolute;
+  pointer-events: none;
+  border-radius: var(--radius-full);
+  filter: blur(80px);
+  z-index: 0;
+  opacity: 0.5;
+  animation: ambient-pulse 8s ease-in-out infinite;
+}
+
+.flare-crimson {
+  background: radial-gradient(circle, rgba(225, 29, 72, 0.35) 0%, rgba(225, 29, 72, 0.05) 60%, transparent 80%);
+}
+
+.flare-cosmic {
+  background: radial-gradient(circle, rgba(136, 19, 55, 0.3) 0%, rgba(225, 29, 72, 0.08) 50%, transparent 75%);
+}
+
+/* Scroll-Driven Storytelling Containers */
+.story-container {
+  position: relative;
+  min-height: 160vh;
+}
+
+.story-sticky {
+  position: sticky;
+  top: 6rem;
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.story-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  z-index: 2;
+}
+
+.story-stage {
+  position: relative;
+  perspective: 1200px;
+  transform-style: preserve-3d;
+}
+
+.story-card-3d {
+  background: var(--bg-surface-0);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-xl);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-elevation);
+  transition: transform 0.4s var(--ease-out-cubic), border-color 0.4s ease;
+  transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(var(--ty, 0px));
+}
+
+/* Interactive Layout & Feature Tabs */
+.tabs-nav {
+  display: inline-flex;
+  align-items: center;
+  background: var(--bg-surface-1);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-full);
+  padding: 0.35rem;
+  gap: 0.25rem;
+  position: relative;
+}
+
+.tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-full);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--duration-fast) ease;
+  position: relative;
+  z-index: 2;
+}
+
+.tab-btn:hover {
+  color: var(--text-primary);
+}
+
+.tab-btn.active {
+  color: #FFFFFF;
+  background: var(--accent-primary);
+  font-weight: 600;
+  box-shadow: 0 2px 10px var(--accent-glow);
+}
+
+/* Reveal Elements on Scroll */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s var(--ease-out-cubic), transform 0.6s var(--ease-out-cubic);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger Delay Utilities */
+.delay-100 { transition-delay: 100ms; }
+.delay-200 { transition-delay: 200ms; }
+.delay-300 { transition-delay: 300ms; }
+.delay-400 { transition-delay: 400ms; }
+
+/* Interactive Showcase Mockup */
+.mockup-window {
+  background: var(--bg-surface-0);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-elevation);
+}
+
+.mockup-header {
+  background: var(--bg-surface-1);
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mockup-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.mockup-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: var(--radius-full);
+  background: var(--border-strong);
+}
+
+.mockup-dot:nth-child(1) { background: #FF5F56; }
+.mockup-dot:nth-child(2) { background: #FFBD2E; }
+.mockup-dot:nth-child(3) { background: #27C93F; }
+
+.mockup-body {
+  padding: 1.5rem;
+}
+
+/* Reduced Motion Override */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .ambient-flare {
+    display: none !important;
+  }
+}
