@@ -47,7 +47,7 @@ function initClient() {
   // 3. Tab Switching
   document.querySelectorAll('[data-tabs-group]').forEach(group => {
     const groupId = group.getAttribute('data-tabs-group');
-    const buttons = group.querySelectorAll('.tab-btn');
+    const buttons = group.querySelectorAll('.tab-btn, .studio-tab-btn, .platform-tab-btn, button[data-tab]');
     const panes = document.querySelectorAll(`[data-tab-content="${groupId}"]`);
 
     buttons.forEach(btn => {
@@ -66,8 +66,8 @@ function initClient() {
 
   // 4. Automatic OS Highlighting on Releases & Download Hubs
   const detected = window.detectPlatform();
-  const platformTab = document.querySelector(`.tab-btn[data-platform="${detected}"]`) ||
-                      (detected === 'arch' ? document.querySelector('.tab-btn[data-platform="linux"]') : null);
+  const platformTab = document.querySelector(`.platform-tab-btn[data-platform="${detected}"], .tab-btn[data-platform="${detected}"]`) ||
+                      (detected === 'arch' ? document.querySelector('.platform-tab-btn[data-platform="linux"], .tab-btn[data-platform="linux"]') : null);
   if (platformTab) {
     platformTab.click();
     const highlightNotice = document.getElementById('detected-os-notice');

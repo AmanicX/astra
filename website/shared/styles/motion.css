@@ -82,15 +82,15 @@
 /* Scroll-Driven Storytelling Containers */
 .story-container {
   position: relative;
-  min-height: 160vh;
+  min-height: 100%;
 }
 
 .story-sticky {
   position: sticky;
   top: 6rem;
   display: grid;
-  grid-template-columns: 1fr 1.2fr;
-  gap: 3rem;
+  grid-template-columns: 1fr 1.15fr;
+  gap: 3.5rem;
   align-items: center;
 }
 
@@ -99,12 +99,14 @@
   flex-direction: column;
   gap: 1.5rem;
   z-index: 2;
+  min-width: 0;
 }
 
 .story-stage {
   position: relative;
   perspective: 1200px;
   transform-style: preserve-3d;
+  min-width: 0;
 }
 
 .story-card-3d {
@@ -115,6 +117,28 @@
   box-shadow: var(--shadow-elevation);
   transition: transform 0.4s var(--ease-out-cubic), border-color 0.4s ease;
   transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(var(--ty, 0px));
+  box-sizing: border-box;
+}
+
+/* Mobile & Tablet Adaptation for Ecosystem Foundation */
+@media (max-width: 860px) {
+  .story-sticky {
+    position: relative;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2.25rem;
+  }
+  .story-stage {
+    perspective: none;
+    transform-style: flat;
+    width: 100%;
+  }
+  .story-card-3d {
+    transform: none !important;
+    padding: 1.25rem 1rem;
+    width: 100%;
+  }
 }
 
 /* Interactive Layout & Feature Tabs */

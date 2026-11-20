@@ -63,6 +63,15 @@ function initMotion() {
     let ticking = false;
 
     function updateStoryTransforms() {
+      if (window.innerWidth <= 860) {
+        storyCards.forEach(card => {
+          card.style.removeProperty('--rx');
+          card.style.removeProperty('--ry');
+          card.style.removeProperty('--ty');
+        });
+        ticking = false;
+        return;
+      }
       storyCards.forEach(card => {
         const rect = card.getBoundingClientRect();
         const winH = window.innerHeight;
