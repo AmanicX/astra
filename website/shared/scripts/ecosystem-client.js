@@ -175,6 +175,90 @@ function initClient() {
     if (catalogFilterCategory) catalogFilterCategory.addEventListener('change', filterCatalog);
     if (catalogFilterPlatform) catalogFilterPlatform.addEventListener('change', filterCatalog);
   }
+
+  // 7. Mobile Navigation Drawer Controller
+  const navToggleBtn = document.querySelector('.nav-toggle-btn');
+  const mobileDrawer = document.getElementById('mobile-nav-drawer');
+
+  if (navToggleBtn && mobileDrawer) {
+    function openMobileDrawer() {
+      navToggleBtn.setAttribute('aria-expanded', 'true');
+      mobileDrawer.removeAttribute('hidden');
+      // Trigger reflow to start CSS transition
+      void mobileDrawer.offsetWidth;
+      mobileDrawer.classList.add('is-open');
+      document.body.classList.add('menu-open');
+
+      // Focus first link or close button inside drawer
+      const focusable = mobileDrawer.querySelector('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+      if (focusable) focusable.focus();
+    }
+
+    function closeMobileDrawer() {
+      navToggleBtn.setAttribute('aria-expanded', 'false');
+      mobileDrawer.classList.remove('is-open');
+      document.body.classList.remove('menu-open');
+      setTimeout(() => {
+        if (!mobileDrawer.classList.contains('is-open')) {
+          mobileDrawer.setAttribute('hidden', '');
+        }
+      }, 300);
+      navToggleBtn.focus();
+    }
+
+    navToggleBtn.addEventListener('click', () => {
+      const isExpanded = navToggleBtn.getAttribute('aria-expanded') === 'true';
+      if (isExpanded) {
+        closeMobileDrawer();
+      } else {
+        openMobileDrawer();
+      }
+    });
+
+    mobileDrawer.querySelectorAll('[data-action="close-menu"]').forEach(el => {
+      el.addEventListener('click', closeMobileDrawer);
+    });
+
+    // Close when navigating via links in drawer
+    mobileDrawer.querySelectorAll('.mobile-nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        closeMobileDrawer();
+      });
+    });
+
+    // Handle Escape key and focus trapping inside drawer
+    document.addEventListener('keydown', (e) => {
+      if (!mobileDrawer.classList.contains('is-open')) return;
+
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        closeMobileDrawer();
+        return;
+      }
+
+      if (e.key === 'Tab') {
+        const focusables = Array.from(
+          mobileDrawer.querySelectorAll('button:not([disabled]), [href], input:not([disabled]), [tabindex]:not([tabindex="-1"])')
+        );
+        if (focusables.length === 0) return;
+
+        const first = focusables[0];
+        const last = focusables[focusables.length - 1];
+
+        if (e.shiftKey) {
+          if (document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+          }
+        } else {
+          if (document.activeElement === last) {
+            e.preventDefault();
+            first.focus();
+          }
+        }
+      }
+    });
+  }
 }
 
 if (document.readyState === 'loading') {

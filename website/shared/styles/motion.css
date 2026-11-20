@@ -61,6 +61,16 @@
   animation: ambient-pulse 8s ease-in-out infinite;
 }
 
+@media (max-width: 640px) {
+  .ambient-flare {
+    filter: blur(36px);
+    opacity: 0.35;
+    animation: none; /* Conserve mobile GPU battery and prevent scroll stutter */
+    max-width: 320px;
+    max-height: 320px;
+  }
+}
+
 .flare-crimson {
   background: radial-gradient(circle, rgba(225, 29, 72, 0.35) 0%, rgba(225, 29, 72, 0.05) 60%, transparent 80%);
 }
