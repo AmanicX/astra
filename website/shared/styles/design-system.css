@@ -200,9 +200,79 @@ button, input, select, textarea {
   border: none;
 }
 
-code, kbd, pre {
+code, pre {
   font-family: var(--font-mono);
   font-size: 0.9em;
+}
+
+kbd {
+  display: inline-block;
+  padding: 0.2rem 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  background: var(--bg-surface-3);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.4);
+  white-space: nowrap;
+}
+
+.keybind-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  flex-shrink: 0;
+  white-space: nowrap;
+  background: var(--bg-surface-3);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-sm);
+  padding: 0.25rem 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+}
+
+.keybind-pill kbd {
+  padding: 0.15rem 0.45rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: var(--bg-surface-1);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  line-height: 1.2;
+}
+
+.keybind-pill .pill-sep {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  font-weight: 600;
+  user-select: none;
+  padding: 0 1px;
+}
+
+.preview-caption {
+  padding: 0.875rem 1.25rem;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  border-top: 1px solid var(--border-subtle);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  background: var(--bg-surface-1);
+}
+
+@media (max-width: 540px) {
+  .preview-caption {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.625rem;
+    padding: 0.75rem 1rem;
+  }
+  .keybind-pill {
+    align-self: flex-start;
+  }
 }
 
 .tabular {
@@ -495,6 +565,13 @@ code, kbd, pre {
   transition: all var(--duration-base) var(--ease-out-cubic);
   position: relative;
   overflow: hidden;
+}
+
+.card-filter,
+.card:has(.pill-dropdown) {
+  overflow: visible !important;
+  position: relative;
+  z-index: 50;
 }
 
 .card:hover {

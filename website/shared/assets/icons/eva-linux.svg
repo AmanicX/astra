@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="eva-linux-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#07090E"/>
+      <stop offset="100%" stop-color="#121826"/>
+    </linearGradient>
+    <radialGradient id="eva-linux-glow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0%" stop-color="#E11D48" stop-opacity="0.32"/>
+      <stop offset="60%" stop-color="#E11D48" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#E11D48" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="eva-linux-stroke" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FDA4AF"/>
+      <stop offset="100%" stop-color="#E11D48"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="512" height="512" rx="112" fill="url(#eva-linux-bg)"/>
+  <circle cx="256" cy="256" r="220" fill="url(#eva-linux-glow)"/>
+
+  <!-- Outer Ring Accent -->
+  <circle cx="256" cy="256" r="180" fill="none" stroke="#FFFFFF" stroke-opacity="0.12" stroke-width="2"/>
+  <circle cx="256" cy="256" r="196" fill="none" stroke="url(#eva-linux-stroke)" stroke-opacity="0.4" stroke-width="3" stroke-dasharray="16 12"/>
+
+  <!-- Central Modern Eva 'E' / Window Geometry Motif -->
+  <g transform="translate(146, 136)">
+    <!-- Main Column Left -->
+    <rect x="0" y="0" width="36" height="240" rx="18" fill="url(#eva-linux-stroke)"/>
+    <!-- Top Bar -->
+    <rect x="36" y="0" width="184" height="36" rx="18" fill="#FFFFFF" fill-opacity="0.95"/>
+    <!-- Middle Bar (Niri Column Symbol) -->
+    <rect x="36" y="102" width="130" height="36" rx="18" fill="url(#eva-linux-stroke)"/>
+    <!-- Bottom Bar -->
+    <rect x="36" y="204" width="184" height="36" rx="18" fill="#FFFFFF" fill-opacity="0.95"/>
+    <!-- Accent indicator dot -->
+    <circle cx="196" cy="120" r="14" fill="#34D399"/>
+  </g>
+</svg>
