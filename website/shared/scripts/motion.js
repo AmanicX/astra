@@ -3,6 +3,9 @@
    ========================================================================== */
 
 function initMotion() {
+  if (window.__amanicx_motion_initialized) return;
+  window.__amanicx_motion_initialized = true;
+
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   // 1. Scroll Progress Bar
@@ -18,11 +21,24 @@ function initMotion() {
   }
 
   // 2. Reveal on Scroll (Intersection Observer with Progressive Enhancement)
-  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const reveals = document.querySelectorAll('.reveal');
 
   if (reveals.length > 0 && !prefersReduced && 'IntersectionObserver' in window) {
-    document.documentElement.classList.add('has-motion');
+    const winH = window.innerHeight || document.documentElement.clientHeight || 900;
+
+    // Immediately mark initial viewport elements visible so above-the-fold never flashes invisible
+    reveals.forEach(el => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top <= winH) {
+        el.classList.add('is-visible', 'no-delay');
+      }
+    });
+
+    // Enable scroll-motion styles for subsequent elements
+    requestAnimationFrame(() => {
+      document.documentElement.classList.add('has-motion');
+    });
+
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -33,10 +49,7 @@ function initMotion() {
     }, { threshold: 0.02, rootMargin: '100px 0px 100px 0px' });
 
     reveals.forEach(el => {
-      const rect = el.getBoundingClientRect();
-      if (rect.top < window.innerHeight) {
-        el.classList.add('is-visible');
-      } else {
+      if (!el.classList.contains('is-visible')) {
         observer.observe(el);
       }
     });

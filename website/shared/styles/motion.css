@@ -163,6 +163,7 @@ html.has-motion .reveal.is-visible {
 }
 
 /* Stagger Delay Utilities */
+.reveal.no-delay { transition-delay: 0s !important; }
 .delay-100 { transition-delay: 100ms; }
 .delay-200 { transition-delay: 200ms; }
 .delay-300 { transition-delay: 300ms; }

@@ -17,6 +17,9 @@ window.detectPlatform = function () {
 };
 
 function initClient() {
+  if (window.__amanicx_client_initialized) return;
+  window.__amanicx_client_initialized = true;
+
   // 2. Setup Copy Buttons
   document.querySelectorAll('.copy-btn').forEach(btn => {
     btn.addEventListener('click', async () => {

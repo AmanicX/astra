@@ -3,6 +3,9 @@
    ========================================================================== */
 
 (function () {
+  if (window.__amanicx_theme_initialized) return;
+  window.__amanicx_theme_initialized = true;
+
   const STORAGE_KEY = 'amanicx_theme';
 
   function getSystemTheme() {
